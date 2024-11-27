@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "serverless dev",
-    "deploy": "serverless deploy"
+    "deploy": "serverless deploy",
+    "build": "serverless package"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.585.0",
