@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_VERSION: 18.19.1
+      SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
