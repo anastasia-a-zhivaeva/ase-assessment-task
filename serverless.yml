@@ -35,7 +35,11 @@ provider:
 
 functions:
   users-api:
-    handler: users.handler
+    handler: /src/lambda.handler
+    events:
+      - httpApi: '*'
+  health-check-api:
+    handler: /src/lambda.handler
     events:
       - httpApi: '*'
 
