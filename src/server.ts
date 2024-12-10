@@ -1,14 +1,14 @@
+import cors from "@fastify/cors";
 import Fastify from "fastify";
 
-import { routes as healthCheckRoutes } from "./modules/health-check/routes";
-import { routes as userRoutes } from "./modules/user/routes";
+import { routes } from "./modules/recommendation/routes";
 
 const server = Fastify();
-server.register(userRoutes);
-server.register(healthCheckRoutes);
+server.register(routes);
+server.register(cors)
 
 if (require.main === module) {
-  // called directly i.e. "node app"
+  // called directly i.e. "node server"
   server.listen({ port: 3000 }, (err) => {
     if (err) console.error(err)
     console.log('server listening on 3000')
