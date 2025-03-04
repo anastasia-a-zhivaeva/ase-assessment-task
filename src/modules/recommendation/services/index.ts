@@ -1,1 +1,1 @@
-export * from "./recommendation-service.fabric";
+export * from "./recommendation-service.factory";

@@ -1,5 +1,5 @@
 import { RecommendationDto, RecommendationRequest } from "./models";
-import { RecommendationServiceFabric } from "./services";
+import { RecommendationServiceFactory } from "./services";
 import { supportedRecommendationServices } from "./supported-recommendation-services";
 
 /**
@@ -7,13 +7,13 @@ import { supportedRecommendationServices } from "./supported-recommendation-serv
  * update cache with recent recommendations and store them in the database
  * (the functionality of notifying a user when new recommendations are available is also possible)
  */
-const recommendationServiceFabric = new RecommendationServiceFabric();
+const recommendationServiceFactory = new RecommendationServiceFactory();
 
 export async function getRecommendations(requestParams: RecommendationRequest): Promise<Array<RecommendationDto>> {
     const recommendationsArrays = await Promise.all(
-        supportedRecommendationServices.map(serviceInfo => {
+        supportedRecommendationServices.map(async serviceInfo => {
             try {
-                return recommendationServiceFabric
+                return await recommendationServiceFactory
                     .createRecommendationService(serviceInfo.name, serviceInfo)
                     .getRecommendation(requestParams);
             } catch(error) {
